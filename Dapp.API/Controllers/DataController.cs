@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dapp.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DataController : Controller
@@ -22,6 +24,7 @@ namespace Dapp.API.Controllers
             return Ok(await _context.Values.ToListAsync());
         }
          
+        [AllowAnonymous] 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id){
             var value = await _context.Values.FirstOrDefaultAsync(x=> x.Id == id);
