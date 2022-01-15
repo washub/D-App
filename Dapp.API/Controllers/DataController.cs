@@ -19,6 +19,7 @@ namespace Dapp.API.Controllers
         {
             _context = context;
         }
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues(){
             return Ok(await _context.Values.ToListAsync());
