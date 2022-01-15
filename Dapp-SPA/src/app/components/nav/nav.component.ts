@@ -8,14 +8,14 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class NavComponent implements OnInit {
 lgForm: any = {};
-token:any;
-name:string;
+token: any;
+name: string;
   constructor(private service: AuthService) { }
 
   ngOnInit() {
   }
 
-  login(){
+  login() {
     console.log(this.lgForm);
     this.service.login(this.lgForm).subscribe( res =>{
         this.token = localStorage.getItem('token');
@@ -23,18 +23,17 @@ name:string;
         console.log(res);
         console.log(this.token);
     },
-    err=>{
+    err => {
       console.log(err);
-    }
-    )
+    });
   }
 
   loggedIn(){
-    const token=localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     return !!token;
   }
-  logOut(){
-    localStorage.removeItem('token')
+  logOut() {
+    localStorage.removeItem('token');
   }
 
 }
